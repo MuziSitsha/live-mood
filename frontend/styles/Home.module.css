@@ -1,0 +1,238 @@
+.page {
+  --ink: #141414;
+  --paper: #f8f3ed;
+  --accent: #ff6b3d;
+  --accent-deep: #d94b2f;
+  --mint: #1ca5a5;
+  --shadow: rgba(9, 12, 14, 0.18);
+
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px 64px;
+  background: radial-gradient(circle at top left, #fff2e3 0%, #f7efe9 45%, #ece9ff 100%);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  inset: auto 10% -180px;
+  height: 360px;
+  background: conic-gradient(from 180deg, rgba(255, 107, 61, 0.2), rgba(28, 165, 165, 0.22), rgba(255, 107, 61, 0.2));
+  filter: blur(70px);
+  opacity: 0.9;
+  pointer-events: none;
+  animation: floatGlow 10s ease-in-out infinite;
+}
+
+.card {
+  position: relative;
+  width: min(720px, 100%);
+  background: var(--paper);
+  border-radius: 28px;
+  padding: 44px clamp(24px, 5vw, 60px) 48px;
+  box-shadow: 0 30px 80px var(--shadow);
+  display: grid;
+  gap: 32px;
+  z-index: 1;
+  animation: riseIn 0.8s ease-out both;
+}
+
+.header {
+  display: grid;
+  gap: 14px;
+}
+
+.kicker {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  color: rgba(20, 20, 20, 0.55);
+}
+
+.title {
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(20, 20, 20, 0.68);
+  max-width: 520px;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(20, 20, 20, 0.8);
+}
+
+.field input,
+.field textarea {
+  border: 1px solid rgba(20, 20, 20, 0.15);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+  background: #fffdfb;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--mint);
+  box-shadow: 0 0 0 3px rgba(28, 165, 165, 0.2);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+}
+
+.chipRow li {
+  list-style: none;
+}
+
+.chip {
+  border: 1px solid rgba(20, 20, 20, 0.15);
+  background: #fff;
+  color: rgba(20, 20, 20, 0.8);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.chip:hover {
+  border-color: rgba(20, 20, 20, 0.35);
+}
+
+.chipActive {
+  background: rgba(28, 165, 165, 0.15);
+  border-color: rgba(28, 165, 165, 0.5);
+  color: var(--ink);
+}
+
+.actions {
+  display: grid;
+  gap: 10px;
+}
+
+.button {
+  border: none;
+  background: linear-gradient(120deg, var(--accent), var(--mint));
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 16px 30px rgba(255, 107, 61, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+}
+
+.button:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 22px 36px rgba(255, 107, 61, 0.3);
+}
+
+.hint {
+  font-size: 13px;
+  color: rgba(20, 20, 20, 0.5);
+}
+
+.result {
+  min-height: 80px;
+  padding: 18px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px dashed rgba(20, 20, 20, 0.15);
+  display: grid;
+  align-items: center;
+}
+
+.affirmation {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.error {
+  font-size: 14px;
+  color: #a6331f;
+}
+
+.loader {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 107, 61, 0.2);
+  border-top-color: var(--accent-deep);
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatGlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 32px 22px 36px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+}
