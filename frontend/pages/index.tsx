@@ -9,11 +9,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const apiBaseUrl = useMemo(() => {
-    return (
-      process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000"
-    ).replace(/\/$/, "");
-  }, []);
+const apiBaseUrl = useMemo(() => process.env.NEXT_PUBLIC_API_BASE_URL!, []);
 
   const feelingPresets = [
     "Grounded",
