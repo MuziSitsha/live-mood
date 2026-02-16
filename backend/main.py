@@ -44,10 +44,16 @@ def _parse_model_list(primary: str, fallback_raw: str | None) -> list[str]:
     return ordered
 
 allowed_origins = _parse_allowed_origins(os.getenv("ALLOWED_ORIGINS"))
+allowed_origin_regex = os.getenv("ALLOWED_ORIGIN_REGEX")
+logger.info("CORS allowed origins: %s", allowed_origins or ["*"])
+if allowed_origin_regex:
+    logger.info("CORS allowed origin regex: %s", allowed_origin_regex)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins or ["*"],
-    allow_methods=["POST", "OPTIONS"],
+    allow_origin_regex=allowed_origin_regex,
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
